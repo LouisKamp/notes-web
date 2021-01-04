@@ -1,9 +1,9 @@
-export const getStuff /* GraphQL */ = `
-    query getStuff {
-        listTodos {
+export const getNotes /* GraphQL */ = `
+    query getNotes {
+        listNotes {
             items {
                 id
-                name
+                content
             }
         }
     }

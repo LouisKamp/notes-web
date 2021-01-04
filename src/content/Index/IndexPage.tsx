@@ -1,22 +1,29 @@
+import { onAuthUIStateChange } from '@aws-amplify/ui-components'
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import * as React from 'react'
-import { useSelector } from 'react-redux'
-import { Box } from 'theme-ui'
+import { useDispatch } from 'react-redux'
 
-import { Counter } from '../../components/organisms/Counter'
-import { DataStoreTest } from '../../components/organisms/DataStoreTest'
-import { RootState } from '../../state/store'
+import { Dispatch } from '../../state/store'
+import { AwsAuth } from '../../types/AwsAuth'
 
 interface Props {
 
 }
 
 export const IndexPage: React.FC<Props> = () => {
-    const testCounter = useSelector((state: RootState) => state.count)
+
+    const dispatch = useDispatch<Dispatch>()
+
+    React.useEffect(() => {
+        onAuthUIStateChange((nextAuthState, authData) => {
+            dispatch.auth.updateState(nextAuthState)
+            dispatch.auth.updateUser(authData as AwsAuth)
+        })
+    }, [])
+
     return (
         <>
-            <Counter />
-            <Box sx={{ fontSize: 'large', width: ['100%', '50%', '25%'], bg: 'blue' }}>hej</Box>
-            <DataStoreTest />
+            <AmplifyAuthenticator />
         </>
     )
 }

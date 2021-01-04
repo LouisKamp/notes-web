@@ -1,7 +1,7 @@
 overwrite: true
 schema: 
   - "src/types/AwsGqlTypes.graphql"
-  - "amplify/backend/api/boilerplate/build/schema.graphql"
+  - "amplify/backend/api/securenotes/build/schema.graphql"
 documents: "src/graphql/**.ts"
 generates:
   src/generated/types.ts:
