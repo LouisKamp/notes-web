@@ -1,0 +1,13 @@
+overwrite: true
+schema: 
+  - "src/types/AwsGqlTypes.graphql"
+  - "amplify/backend/api/boilerplate/build/schema.graphql"
+documents: "src/graphql/**.ts"
+generates:
+  src/generated/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+config:
+  namingConvention:
+    enumValues: upper-case#upperCase
